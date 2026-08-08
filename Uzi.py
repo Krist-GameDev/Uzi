@@ -66,7 +66,14 @@ def GMN():
             if int(''.join(tm.split(':')))>=int(''.join(rnd_n.split(':'))):
                 send_message(admin_id, random.choice(Gn))
                 gmn_ns = True
+def SelfPing():
+    try:
+        requests.get("https://uzi-ecu4.onrender.com")
+        print("Бот успешно отправил пинг сам себе для защиты от сна.")
+    except Exception as e:
+        print("Ошибка самопинга:", e)
 
+schedule.every(10).minutes.do(SelfPing)
 schedule.every(5).minutes.do(LastMsg, url=url)
 schedule.every(10).seconds.do(GMN)
 
